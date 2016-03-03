@@ -2,7 +2,7 @@
 """
 Created on Mon Jan 25 16:21:42 2016
 
-@author: 4473
+@author: Ju.51
 """
 
 import MySQLdb
