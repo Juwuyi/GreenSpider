@@ -27,8 +27,7 @@ if __name__ == '__main__':
             website = target_website.replace('.','_')
             website_latest_link,website_latest_date = sqler.get_latest(target_website)
             spider = Spider.Spider(website,
-                                   website_latest_link,
-                                   website_latest_date)
+                                   website_latest)
             spiders.append(spider)
         except Exception as ex:
             print 'Warning: Spider Initialization Failed at',target_website

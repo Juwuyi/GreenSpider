@@ -29,7 +29,7 @@ class SQLer():
             print type(ex),ex
             data = None
         finally:
-            return data[2],data[5]
+            return data
             
     def insert(self,infos):
         cursor = self.connection.cursor()

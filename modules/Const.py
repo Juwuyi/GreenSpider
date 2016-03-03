@@ -9,10 +9,18 @@ Created on Thu Mar 03 15:15:11 2016
 
 
 
-
-     
-
-
+ret_dic_tplt = dict(article_title='',
+                    article_link='',
+                    article_pic_link='',
+                    article_website='',
+                    article_note='',
+                    
+                    article_post_date=None,
+                    article_cnt_up=0,
+                    article_cnt_down=0,
+                    article_tags=[],
+                    article_download_links=[],
+                    article_content='')
 
 
 user_agent_list = [\

@@ -11,7 +11,7 @@ import time
 
 
 class Spider():
-    def __init__(self,website_name,l_link=None,l_date=None):
+    def __init__(self,website_name,website_latest):
         #爬虫初始化
         try:
             roles_dir = os.path.abspath('./roles/')
@@ -23,8 +23,7 @@ class Spider():
         # 关于起始页面和html解析函数
         self.latest_url = website_Configer.latest_url
         self.page_parser = website_Configer.page_parser
-        self.latest_link = l_link
-        self.latest_date = l_date
+        self.latest = website_latest
         self.ret_list = []
         
         
