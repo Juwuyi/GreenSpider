@@ -6,28 +6,31 @@ Created on Mon Jan 25 16:21:42 2016
 """
 
 import MySQLdb
-import ConfigRPG
-import sys
-import _mysql
-
-
 
 class SQLer():
     def __init__(self,host,user,pswd,dbnm=None):
-        self.connection = MySQLdb.connect(host=host,user=user,passwd=pswd,db=dbnm,charset='utf8')
-        self.cc = _mysql.connect(host,user,pswd,dbnm)
+        self.db = MySQLdb.connect(host=host,
+                                          user=user,
+                                          passwd=pswd,
+                                          db=dbnm,
+                                          charset='utf8')
     
-    def get_latest_link(self,website):
+    def get_latest(self,website):
+        # website : www.example.com
+        # 返回该网站在数据库中已有的、最新的文章链接 以及该文章的发布时间
+        # 返回日期防止该文章被删除
+        # 如果没有则返回None
         try:
-            cmd = 'SELECT article_link FROM infos WHERE website="%s" ORDER BY post_time DESC LIMIT 1;' % (website)
-            self.cc.query(cmd)
-            r = self.cc.use_result()
-            link = r.fetch_row()[0][0]
+            cs = self.db.cursor()
+            cmd = 'SELECT * FROM articles WHERE article_website="%s" ORDER BY article_post_date DESC LIMIT 1;' % (website)
+            cs.execute(cmd)
+            data = cs.fetchone()
         except Exception as ex:
-            print ex
-            link = None
+            print type(ex),ex
+            data = None
         finally:
-            return link
+            return data[2],data[5]
+            
     def insert(self,infos):
         cursor = self.connection.cursor()
         for info in infos:
@@ -51,20 +54,13 @@ class SQLer():
 
 
 if '__main__' == __name__:
-    host = ConfigRPG.sql_host
-    user = ConfigRPG.sql_user
-    pswd = ConfigRPG.sql_pass
-    dbnm = ConfigRPG.sql_dbnm
+    import Configer
+    sqler = SQLer(Configer.host,Configer.usnm,Configer.pswd,Configer.dbnm)
+    for website in Configer.target_sites:
+        break
+        website_latest = sqler.get_latest(website)
+        print website_latest
     
-    
-    db = MySQLdb.connect(host=host,user=user,passwd=pswd,db=dbnm,charset='utf8')
-    
-    from roles import zdfans
-    html = zdfans.requests.get(zdfans.latest_url).text
-    next_page_link,infos = zdfans.page_parser(html)
-    
-    sqler =SQLer(host,user,pswd,dbnm)
-    print  sqler.get_latest_link('www.zdfans.com') 
     
     
     

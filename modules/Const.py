@@ -5,7 +5,8 @@ Created on Thu Mar 03 15:15:11 2016
 @author: Lab
 """
 
-import random
+
+
 
 
 
@@ -51,6 +52,7 @@ user_agent_list = [\
         "(KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24",
         "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/535.24 "
         "(KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24"]
+import random
 user_agent = random.choice(user_agent_list) 
 
 
