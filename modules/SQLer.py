@@ -9,6 +9,7 @@ import MySQLdb
 
 class SQLer():
     def __init__(self,host,user,pswd,dbnm=None):
+        # Done!
         self.db = MySQLdb.connect(host=host,
                                           user=user,
                                           passwd=pswd,
@@ -16,6 +17,7 @@ class SQLer():
                                           charset='utf8')
     
     def get_latest(self,website):
+        # Done!
         # website : www.example.com
         # 返回该网站在数据库中已有的、最新的文章链接 以及该文章的发布时间
         # 返回日期防止该文章被删除

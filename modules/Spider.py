@@ -12,6 +12,7 @@ import time
 
 class Spider():
     def __init__(self,website_name,website_latest):
+        # Done!
         #爬虫初始化
         try:
             roles_dir = os.path.abspath('./roles/')
