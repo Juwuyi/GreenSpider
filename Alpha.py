@@ -24,10 +24,8 @@ if __name__ == '__main__':
     spiders = []
     for target_website in Configer.target_sites:
         try:
-            website = target_website.replace('.','_')
-            website_latest_link,website_latest_date = sqler.get_latest(target_website)
-            spider = Spider.Spider(website,
-                                   website_latest)
+            spider = Spider.Spider(target_website.replace('.','_'),
+                                   sqler.get_latest(target_website))
             spiders.append(spider)
         except Exception as ex:
             print 'Warning: Spider Initialization Failed at',target_website

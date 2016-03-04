@@ -12,6 +12,10 @@ import time
 
 class Spider():
     def __init__(self,website_name,website_latest):
+        '''
+        传递网站名称 www_baidu_com 读取同名py文件
+        传递最新该网站下最新一条数据 return data = ['0L',''………]
+        '''
         # Done!
         #爬虫初始化
         try:
